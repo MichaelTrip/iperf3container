@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iperf3container-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: iperf3container
+        image: ghcr.io/michaeltrip/iperf3container:latest
+        args: ["-c", "iperf3.iperf3-server", "-p", "5201", "-t", "60"]
+      restartPolicy: Never
+  backoffLimit: 4
+
